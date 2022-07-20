@@ -1,32 +1,34 @@
+// imports
+const mongoose = require('mongoose');
+// end of imports
+
 // inits
 let products = require("./products.json");
 // end of inits
 
 // key
-const key = process.env.LAVAN_KEY;
+const privateKey = process.env.LAVAN_KEY;
 // end of key
 
 // main functions
-function getProducts(key, product) {
+function getProducts() {
   return products;
 }
 
-function getProductById(key, productId) {
+function getProductById(productId) {
   return products.productId;
 }
 
 function addProduct(key, product) {
-  // creating product id
-  let randomNum = Math.floor(Math.random() * 10000);
-  while (!products.randomNum) {
-    randomNum = Math.floor(Math.random() * 10000);
-  }
-  const productId = randomNum;
-  // end of creating product id
+  if (key === privateKey) {
+
+  } else return undefined;
 }
 
-function removeProduct(key, product) {
-  
+function removeProduct(key, productId) {
+  if (key === privateKey) {
+    
+  } else return undefined;
 }
 // end of main functions
 
