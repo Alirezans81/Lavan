@@ -6,24 +6,24 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/Front-End/node_modules
-/Front-End/.pnp
-/Front-End/.pnp.js
+/Front-End/lavan/node_modules
+/Front-End/lavan/.pnp
+/Front-End/lavan/.pnp.js
 
 # testing
-/Front-End//coverage
+/Front-End/lavan/coverage
 
 # production
-/Front-End//build
+/Front-End/lavan/build
 
 # misc
-/Front-End/.DS_Store
-/Front-End/.env.local
-/Front-End/.env.development.local
-/Front-End/.env.test.local
-/Front-End/.env.production.local
+/Front-End/lavan/.DS_Store
+/Front-End/lavan/.env.local
+/Front-End/lavan/.env.development.local
+/Front-End/lavan/.env.test.local
+/Front-End/lavan/.env.production.local
 
-/Front-End/npm-debug.log*
-/Front-End/yarn-debug.log*
-/Front-End/yarn-error.log*
+/Front-End/lavan/npm-debug.log*
+/Front-End/lavan/yarn-debug.log*
+/Front-End/lavan/yarn-error.log*
 ## end of Front-End

@@ -30,4 +30,4 @@ function removeProduct(key, product) {
 }
 // end of main functions
 
-module.exports = {getProducts, getProductById, addProduct};
+module.exports = {getProducts, getProductById, addProduct, removeProduct};
