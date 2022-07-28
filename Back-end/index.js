@@ -1,10 +1,16 @@
 // imports
-const {getProducts, getProductById, addProduct, removeProduct} = require('./productsFuncs');
+const express = require('express');
+const mongoose = require('mongoose');
 // end of imports
 
 // intits
-const express = require('express');
 const app = express();
+
+const homeRouter = require('./routes/home');
+const productsRouter = require('./routes/products');
+const usersRouter = require('./routes/users');
+const userRouter = require('./routes/user');
+const adminRouter = require('./routes/admin');
 // end of intits
 
 // express add-ons
@@ -13,21 +19,18 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 // end of express add-ons
 
-// proudct routes
-app.get('/products', (req, res)=>{
-  res.send(getProducts());
-})
+// connecting to the db
+mongoose.connect("mongodb://localhost:27017/lavan")
+.then(()=>console.log('connected to mongodb.'))
+.catch(()=>console.log('could not connect to mongodb!'));
+// end of connecting to the db
 
-app.get('/products/:id', (req, res)=>{
-  res.send(getProductById());
-})
+// routes
+app.use('/', homeRouter);
 
-app.get('/products/add', (req, res)=>{
-  res.send(addProduct(req.body));
-})
-
-app.get('/products/remove', (req, res)=>{
-  res.send(removeProduct(req.body));
-})
-// end of product routes
+app.use('/api/products', productsRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/user', userRouter);
+app.use('/api/admin', adminRouter);
+// end of routes
 
