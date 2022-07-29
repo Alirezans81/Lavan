@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
 router.post(
   "/",
   [
-    body("imgSrc", "imgSrc cant be empty").isURL(),
+    body("imgSrc", "imgSrc cant be empty").notEmpty(),
     body("imgSrc", "imgSrc must be URL").isURL(),
     body("title", "title cant be empty").notEmpty(),
     body("colors", "colors cant be empty").notEmpty(),
@@ -66,13 +66,13 @@ router.post(
 router.put(
   "/:id",
   [
-    body("imgSrc", "imgSrc cant be empty").isURL(),
+    body("imgSrc", "imgSrc cant be empty").notEmpty(),
     body("imgSrc", "imgSrc must be URL").isURL(),
     body("title", "title cant be empty").notEmpty(),
     body("colors", "colors cant be empty").notEmpty(),
     body("colors", "colors must be array").isArray(),
   ],
-  (req, res) => {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
