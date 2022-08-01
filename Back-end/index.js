@@ -1,36 +1,18 @@
-// imports
 const express = require('express');
-const mongoose = require('mongoose');
-// end of imports
-
-// intits
 const app = express();
 
-const homeRouter = require('./routes/home');
-const productsRouter = require('./routes/products');
-const usersRouter = require('./routes/users');
-const userRouter = require('./routes/user');
-const adminRouter = require('./routes/admin');
-// end of intits
+const mongoose = require('mongoose');
+const debug = require('debug')("app:main");
+const config = require('config');
+const winston = require('winston');
 
-// express add-ons
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(express.static('public'));
-// end of express add-ons
+const router = require('./src/routes');
 
-// connecting to the db
-mongoose.connect("mongodb://localhost:27017/lavan")
-.then(()=>console.log('connected to mongodb.'))
-.catch(()=>console.log('could not connect to mongodb!'));
-// end of connecting to the db
+require('./startup/config')(app, express);
+require('./startup/db')();
+require('./startup/logging')();
 
-// routes
-app.use('/', homeRouter);
+app.use('/api', router);
 
-app.use('/api/products', productsRouter);
-app.use('/api/users', usersRouter);
-app.use('/api/user', userRouter);
-app.use('/api/admin', adminRouter);
-// end of routes
-
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`listening on port ${port}`));
