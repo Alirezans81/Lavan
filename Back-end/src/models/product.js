@@ -6,19 +6,19 @@ const countSchema = mongoose.Schema({
 
 const sizeSchema = mongoose.Schema({
   size: { type: Number, required: true },
-  count: { type: [countSchema], required: true, default: [] },
+  count: { type: [countSchema], required: true },
 });
 
 const colorSchema = mongoose.Schema({
   color_name: { type: String, required: true },
-  sizes: { type: [sizeSchema], required: true, default: [] },
+  sizes: { type: [sizeSchema], required: true },
 });
 
 const productSchema = mongoose.Schema({
-  imgSrc: {type: String, required: true},
+  imgSrc: { type: String, required: true },
   title: { type: String, required: true },
   desc: String,
-  colors: { type: [colorSchema], required: true, default: [] },
+  colors: { type: [colorSchema], required: true },
 });
 
 module.exports = mongoose.model("Product", productSchema);

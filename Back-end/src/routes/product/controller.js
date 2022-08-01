@@ -14,7 +14,11 @@ module.exports = new (class extends controller {
   async getProductById(req, res) {
     const product = await Product.findById(req.params.id);
     if (!product) {
-      return res.status(400).send('product not found');
+      return this.response({
+        res,
+        code: 404,
+        message: 'product not found'
+      });
     }
     res.json({
       data: product,
